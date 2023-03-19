@@ -17,7 +17,7 @@ template < typename T = int > ostream& operator << (ostream &out, const vector <
     return out;
 }
 
-template<typename T=int>struct Coordinate_Compression
+template<typename T>struct Coordinate_Compression
 {
     vector<T>vec;
     
@@ -60,7 +60,7 @@ template<typename T=int>struct Coordinate_Compression
 
         vector<T>ans;
         for(auto&i:vec)
-            ans.emblace_back(get_val(i));
+            ans.emplace_back(get_val(i));
 
         return ans;
     }
