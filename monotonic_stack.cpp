@@ -19,8 +19,7 @@ template < typename T = int > ostream& operator << (ostream &out, const vector <
 }
 
 
-template<typename T=int>
-struct monotonic_stack
+template<typename T>struct monotonic_stack
 {
 private:
     vector<T>vec;
@@ -39,13 +38,13 @@ public:
 
         for(int i=size-1;i>=0;i--)
         {
-            while(!monotonic.empty()&&vec[i]>=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i]>=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i]=-1;
 
             else ans[i]=monotonic.top();
 
-            monotonic.push(vec[i]);
+            monotonic.push(i);
         }
 
         return ans;
@@ -59,13 +58,13 @@ public:
 
         for(int i=0;i<size;i++)
         {
-            while(!monotonic.empty()&&vec[i]>=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i]>=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i]=-1;
 
             else ans[i]=monotonic.top();
 
-            monotonic.push(vec[i]);
+            monotonic.push(i);
         }
 
         return ans;
@@ -80,13 +79,13 @@ public:
 
         for(int i=size-1;i>=0;i--)
         {
-            while(!monotonic.empty()&&vec[i]<=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i]<=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i]=-1;
 
             else ans[i]=monotonic.top();
 
-            monotonic.push(vec[i]);
+            monotonic.push(i);
         }
 
         return ans;
@@ -100,13 +99,13 @@ public:
 
         for(int i=0;i<size;i++)
         {
-            while(!monotonic.empty()&&vec[i]<=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i]<=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i]=-1;
 
             else ans[i]=monotonic.top();
 
-            monotonic.push(vec[i]);
+            monotonic.push(i);
         }
 
         return ans;
@@ -119,13 +118,13 @@ public:
 
         for(int i=(2*size)-1;i>=0;i--)
         {
-            while(!monotonic.empty()&&vec[i%size]>=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i%size]>=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i%size]=-1;
 
             else ans[i%size]=monotonic.top();
 
-            monotonic.push(vec[i%size]);
+            monotonic.push(i%size);
         }
 
         return ans;
@@ -139,13 +138,13 @@ public:
 
         for(int i=0;i<2*size;i++)
         {
-            while(!monotonic.empty()&&vec[i%size]>=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i%size]>=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i%size]=-1;
 
             else ans[i%size]=monotonic.top();
 
-            monotonic.push(vec[i%size]);
+            monotonic.push(i%size);
         }
 
         return ans;
@@ -160,13 +159,13 @@ public:
 
         for(int i=(2*size)-1;i>=0;i--)
         {
-            while(!monotonic.empty()&&vec[i%size]<=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i%size]<=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i%size]=-1;
 
             else ans[i%size]=monotonic.top();
 
-            monotonic.push(vec[i%size]);
+            monotonic.push(i%size);
         }
 
         return ans;
@@ -180,26 +179,36 @@ public:
 
         for(int i=0;i<2*size;i++)
         {
-            while(!monotonic.empty()&&vec[i%size]<=monotonic.top())monotonic.pop();
+            while(!monotonic.empty()&&vec[i%size]<=vec[monotonic.top()])monotonic.pop();
 
             if(monotonic.empty())ans[i%size]=-1;
 
             else ans[i%size]=monotonic.top();
 
-            monotonic.push(vec[i%size]);
+            monotonic.push(i%size);
         }
 
         return ans;
     }
 };
 
+
 void solve()
 {
-    vector<int>vec={3,6,2,1,8,7};
-    monotonic_stack<int>monotonic(vec);
-    vector<int>v=monotonic.next_greater_element_in_circular();
-    cout<<v;
+    vector<ll>vec={7,5,6,3,4,2,1};
+    monotonic_stack<ll>m(vec);
+    
+    cout<<m.next_greater_element()<<nl;
+    cout<<m.next_greater_element_in_circular()<<nl;
+    cout<<m.next_smaller_element()<<nl;
+    cout<<m.next_smaller_element_in_circular()<<nl;
+    cout<<m.prev_greater_element()<<nl;
+    cout<<m.prev_smaller_element()<<nl;
+    cout<<m.prev_smaller_element_in_circular()<<nl;
+    cout<<m.prev_greater_element_in_circular();
 }
+
+
 void A7med(){
     ios_base ::sync_with_stdio(false),cin.tie(nullptr),cout.tie(nullptr);
 }
