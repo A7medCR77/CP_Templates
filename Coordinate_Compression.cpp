@@ -17,12 +17,23 @@ template < typename T = int > ostream& operator << (ostream &out, const vector <
     return out;
 }
 
-template<typename T>struct Coordinate_Compression
+template<typename T=int>struct Coordinate_Compression
 {
+    private:
     vector<T>vec;
     
     bool is_bulid;
 
+    void bulid()
+    {
+        sort(all(vec));
+        
+        vec.resize(unique(all(vec))-vec.begin());
+        
+        is_bulid=true;
+    }
+
+    public:
     Coordinate_Compression(vector<T>&v)
     {
         vec=v;
@@ -36,16 +47,6 @@ template<typename T>struct Coordinate_Compression
         vec.emplace_back(val);
         is_bulid=false;
     }
-
-    void bulid()
-    {
-        sort(all(vec));
-        
-        vec.resize(unique(all(vec))-vec.begin());
-        
-        is_bulid=true;
-    }
-
 
     T get_val(T value)
     {
