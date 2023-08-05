@@ -1,62 +1,23 @@
-#include <bits/stdc++.h>
-#define ll long long
-#define ull unsigned long long
-#define EPS 1e-9
-#define MOD 1000000007
-#define ceil(n, m) (n + m - 1) / m
-#define round(n, m) (n + m / 2) / m
-#define sz(s) s.size()
-#define Num_of_Digits(n) ((int)log10(n) + 1)
-#define sum_of_first_n_odd_number(n) ((n % MOD) * (n % MOD)) % MOD;
-#define all(s) s.begin(), s.end()
-#define OO 20000000000
-#define ld long double
-#define pi 3.141592653589793
-#define rall(s) s.rbegin(), s.rend()
-#define fixed(n) cout << fixed << setprecision(n)
-#define mod_combine(a, b, m) (((a % m) * (b % m)) % m)
-#define se second
-#define fi first
-#define eb emplace_back
-#define pb push_back
-#define pf push_front
-#define nl '\n'
-#define PI acos(-1.0)
-#define EPS 1e-9
-#define dot_prod(a, b) real(conj(a) * (b))
-#define cross_prod(a, b) imag(conj(a) * (b))
-#define rotateO(p, theta) (p) * polar(1.0, theta)
-#define rotateA(p, a, theta) rotateO((p) - (a), theta) + (a)
-#define reflectO(p, m) conj((p) / (m)) * (m)
-#define reflectA(p, a, m) reflectO((p) - (a), m) + (a)
-#define MAXll 9223372036854775807
-#define E 2.71828182846
-#define tolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower)
-
-using namespace std;
-
-template <typename T = int>
-istream &operator>>(istream &in, vector<T> &v)
-{
-    for (auto &x : v)
-        in >> x;
-    return in;
-}
-
-template <typename T = int>
-ostream &operator<<(ostream &out, const vector<T> &v)
-{
-    for (const T &x : v)
-        out << x << "\n";
-    return out;
-}
-
-
-//______________________________________________CODE________________________________________________________________________________________________________________________________________
-
 struct math
 {
+private:
+    bool check_prime(ll a, ll d, ll s, ll n)
+    {
+        ll x = modular_exponential(a, d, n);
+        if (x == 1 || x == n - 1)
+            return true;
 
+        for (int i = 1; i < s; ++i)
+        {
+            x = get_mul(x, x, n);
+            if (x == n - 1)
+                return true;
+        }
+
+        return false;
+    }
+
+public:
     math() {}
 
     // cmp double
@@ -227,18 +188,30 @@ struct math
         }
         return true;
     }
-};
 
-void solve()
-{
-}
-
-int main()
-{
-    ll t = 1;
-    while (t--)
+    // check if n is prime (even n is a big number)
+    // rand^d%n==1
+    // rand^((2^s)*d)%n==1
+    bool Miller_Rabin(ll n, ll step = 1000)
     {
-        solve();
+        if (n <= 4)
+            return n == 2 || n == 3;
+
+        ll d = n - 1;
+        ll s = 0;
+        while (!(d & 1))
+        {
+            d >>= 1;
+            s++;
+        }
+
+        for (int i = 1; i <= step; ++i)
+        {
+            ll a = (rand() % ((n - 2) - 2 + 1)) + 2;
+            if (!check_prime(a, d, s, n))
+                return false;
+        }
+
+        return true;
     }
-    return 0;
-}
+};
