@@ -175,19 +175,32 @@ public:
         return ans;
     }
 
-    vector<ll> prime_factorization(ll n)
+    vector<pair<ll, ll>> prime_factorization(ll n)
     {
-        vector<ll> ans;
+        vector<pair<ll, ll>> ans;
+
+        ll cnt = 0;
 
         while (n % 2 == 0)
-            ans.eb(2), n /= 2;
+            cnt++, n /= 2;
+
+        if (cnt > 0)
+            ans.pb({2, cnt});
 
         for (int i = 3; i * i <= n; i += 2)
-            while (n % i == 0)
-                ans.eb(i), n /= i;
+        {
+            cnt = 0;
+            if (n % i == 0)
+            {
+                while (n % i == 0)
+                    cnt++, n /= i;
+
+                ans.pb({i, cnt});
+            }
+        }
 
         if (n != 1)
-            ans.eb(n);
+            ans.pb({n, 1});
 
         return ans;
     }
@@ -266,6 +279,47 @@ public:
         }
 
         return true;
+    }
+
+    // Euler Totient = phi(a)
+    // get how many numbers less than n with gcd =1 with n
+    // a = p1^a * p2^b * p3^c * .... -> prime factorization
+    // phi(a) = phi(p1^a) * phi(p2^b) * phi(p3^c) * ....
+    // phi(p^a)= p^a - p^(a-1)
+    // phi(a) = (p1^a - p1^(a-1)) * (p2^b - p2^(b-1)) * (p3^c - p3^(c-1)) * ....
+    // phi(a) = p1^a * (1 - p1^(-1)) * p2^b * (1 - p2^(-1)) * p3^c * (1 - p3^(-1)) * ....
+    // phi(a) = p1^a * p2^b * p3^c * ..... * (1 - p1^(-1)) * (1 - p2^(-1)) * (1 - p3^(-1)) * ....
+    // phi(a) = a * (1 - p1^(-1)) * (1 - p2^(-1)) * (1 - p3^(-1)) * ....
+
+    // Time Complexity O(sqrt(n))
+
+    ll phi(ll a)
+    {
+        vector<pair<ll, ll>> vec = prime_factorization(a);
+        double ans = a;
+        for (auto &[l, r] : vec)
+            ans *= (1.0 - (1.0 / double(l)));
+
+        return (ll)ans;
+    }
+
+    // Time Complexity O(n*log(log(n)))
+
+    vector<int> phi_0_to_n(int n)
+    {
+        vector<int> phi(n + 1);
+        for (int i = 0; i <= n; i++)
+            phi[i] = i;
+        for (int i = 2; i <= n; i++)
+        { // 2->10
+            if (phi[i] == i)
+            {
+                for (int j = i; j <= n; j += i)
+                    phi[j] -= phi[j] / i;
+            }
+        }
+
+        return phi;
     }
 };
 
