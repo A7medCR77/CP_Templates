@@ -311,7 +311,7 @@ public:
         for (int i = 0; i <= n; i++)
             phi[i] = i;
         for (int i = 2; i <= n; i++)
-        { // 2->10
+        {
             if (phi[i] == i)
             {
                 for (int j = i; j <= n; j += i)
