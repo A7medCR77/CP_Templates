@@ -106,6 +106,12 @@ public:
         return ((first * (1 - pow(ratio, number_of_element))) / (1 - ratio));
     }
 
+    // get num of odd numbers between l & r
+    ll num_of_odd(ll l,ll r)
+    {
+        return (r - l + 1) - (r / 2 - (l - 1) / 2);
+    }
+
     ll get_mul(ll a, ll b, ll mod)
     {
         ll res = 0;
