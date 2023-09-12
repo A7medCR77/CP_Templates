@@ -22,7 +22,7 @@
 #define pf push_front
 #define nl '\n'
 #define PI acos(-1.0)
-#define EPS 1e-9
+#define EPS 1e-10
 #define dot_prod(a, b) real(conj(a) * (b))
 #define cross_prod(a, b) imag(conj(a) * (b))
 #define rotateO(p, theta) (p) * polar(1.0, theta)
