@@ -25,7 +25,7 @@ ostream &operator<<(ostream &out, const vector<T> &v)
 
 // Dijkstra_algorithm with connected graph
 // Time Complexity n log(n)
-vector<ll> Dijkstra_algorithm(ll start, vector<vector<pair<ll, ll>>> &graph)
+vector<ll> Dijkstra(ll start, vector<vector<pair<ll, ll>>> &graph)
 {
     int sz = sz(graph);
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
@@ -56,16 +56,6 @@ vector<ll> Dijkstra_algorithm(ll start, vector<vector<pair<ll, ll>>> &graph)
 
 void solve()
 {
-    vector<vector<pair<ll, ll>>> graph(3);
-    for (int i = 0; i < 3; ++i)
-    {
-        ll a, b, d;
-        cin >> a >> b >> d;
-        graph[a].pb({b, d});
-        graph[b].pb({a, d});
-    }
-
-    cout << Dijkstra_algorithm(0, graph);
 }
 
 int main()
