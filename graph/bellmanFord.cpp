@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>\
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned long long
 #define EPS 1e-9
