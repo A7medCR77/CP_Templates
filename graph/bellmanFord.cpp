@@ -1,7 +1,4 @@
-#include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-#define debug(x) cout << #x << ": " << (x) << "\n";
+#include <bits/stdc++.h>\
 #define ll long long
 #define ull unsigned long long
 #define EPS 1e-9
@@ -37,20 +34,6 @@
 #define tolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower)
 
 using namespace std;
-using namespace __gnu_pbds;
-
-template <typename K, typename V, typename Comp = std::less<K>>
-using ordered_map = tree<K, V, Comp, rb_tree_tag, tree_order_statistics_node_update>;
-template <typename K, typename Comp = std::less<K>>
-using ordered_set = ordered_map<K, null_type, Comp>;
-
-template <typename K, typename V, typename Comp = std::less_equal<K>>
-using ordered_multimap = tree<K, V, Comp, rb_tree_tag, tree_order_statistics_node_update>;
-template <typename K, typename Comp = std::less_equal<K>>
-using ordered_multiset = ordered_multimap<K, null_type, Comp>;
-// order_of_key(val)  count elements smaller/greater than val
-//*s.find_by_order(idx)  element with IDX idx
-
 template <typename T = int>
 istream &operator>>(istream &in, vector<T> &v)
 {
@@ -66,13 +49,6 @@ ostream &operator<<(ostream &out, const vector<T> &v)
         out << x << " ";
     return out;
 }
-
-int dx[4] = {0, 1, -1, 0};
-int dy[4] = {1, 0, 0, -1};
-
-// p q r s t v w x
-// i j k l
-// ______________________________________________CODE________________________________________________________________________________________________________________________________________
 
 struct edge
 {
@@ -170,28 +146,17 @@ struct bellmanFord
     }
 };
 
-void siu()
+void solve()
 {
-}
-
-void A7med()
-{
-    ios_base ::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
 }
 
 int main()
 {
-    A7med();
     ll t = 1;
     // cin >> t;
-    // cin.ignore();
     while (t--)
     {
-        siu();
+        solve();
     }
     return 0;
 }
