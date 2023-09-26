@@ -327,6 +327,9 @@ public:
     // 1 4 7 ....
     ll arithmetic_progression(ll n, ll a, ll d)
     {
+        //n->is the number of terms in the series
+        //a->is the first term of the series
+        //d->is the common difference between the terms
         return (n / 2) * (2 * a + (n - 1) * d);
     }
 };
