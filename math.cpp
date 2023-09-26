@@ -72,14 +72,13 @@ private:
 
 public:
     math() {}
-
     // cmp double
     int dcmp(double x, double y)
     {
         return (fabs(x - y) <= EPS ? 0 : (x < y ? -1 : 1));
     }
 
-    ll summation(ll first = 1, ll last = 1)
+    ll summation(ll first, ll last)
     {
         ll x = last - first + 1;
         return ((first + last) * x) / 2;
@@ -103,7 +102,7 @@ public:
     }
 
     // get num of odd numbers between l & r
-    ll num_of_odd(ll l,ll r)
+    ll num_of_odd(ll l, ll r)
     {
         return (r - l + 1) - (r / 2 - (l - 1) / 2);
     }
@@ -122,7 +121,6 @@ public:
 
         return res % mod;
     }
-
     ll binary_exponential(ll a, ll b)
     {
         ll res = 1;
@@ -236,7 +234,7 @@ public:
     int reverse_summation(ll n)
     {
         ll a = (-1 + (ll)sqrtl(1 + 8 * n)) / 2;
-        ll z = arithmetic_summation(1, a);
+        ll z = summation(1, a);
         return (n == z ? a : -1);
     }
 
@@ -312,6 +310,7 @@ public:
         vector<int> phi(n + 1);
         for (int i = 0; i <= n; i++)
             phi[i] = i;
+
         for (int i = 2; i <= n; i++)
         {
             if (phi[i] == i)
@@ -322,6 +321,13 @@ public:
         }
 
         return phi;
+    }
+    // get summation for sequence that increases in a constant number
+    // 2 4 6 ....
+    // 1 4 7 ....
+    ll arithmetic_progression(ll n, ll a, ll d)
+    {
+        return (n / 2) * (2 * a + (n - 1) * d);
     }
 };
 
