@@ -286,6 +286,11 @@
 "      //d->is the common difference between the terms",
 "      return (n / 2) * (2 * a + (n - 1) * d);",
 "   }",
+"",
+"   ll last_term_in_arithmetic_progression(ll n, ll a, ll d)",
+"   {",
+"      return a + (n - 1) * d;",
+"   }",
 "};",
 		],
 		"description": "Log output to console"
