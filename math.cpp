@@ -79,11 +79,7 @@ public:
         return (fabs(x - y) <= EPS ? 0 : (x < y ? -1 : 1));
     }
 
-    // summation of arithmetic sequence increase with constant number
-    // 2 4 6 8.....
-    // 1 3 5 7.....
-    // 1 4 7 10.....
-    ll arithmetic_summation(ll first = 1, ll last = 1)
+    ll summation(ll first = 1, ll last = 1)
     {
         ll x = last - first + 1;
         return ((first + last) * x) / 2;
