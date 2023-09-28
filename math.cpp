@@ -337,6 +337,20 @@ public:
    {
       return a + (n - 1) * d;
    }
+
+    // get integer distance between two points
+    int Euclidean_Distance_i(int x1, int y1, int x2, int y2)
+    {
+        double x = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+        return x == (ll)x ? (ll)x : (ll)(x + 1);
+    }
+
+    // get double distance between two points
+    double Euclidean_Distance_d(int x1, int y1, int x2, int y2)
+    {
+        double x = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+        return x;
+    }
 };
 
 void solve()
