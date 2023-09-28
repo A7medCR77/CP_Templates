@@ -291,6 +291,11 @@
 "   {",
 "      return a + (n - 1) * d;",
 "   }",
+"   ll Euclidean_Distance(ll x1, ll y1, ll x2, ll y2)",
+"   {",
+"      double x = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));",
+"      return x == (ll)x ? (ll)x : (ll)(x + 1);",
+"   }"
 "};",
 		],
 		"description": "Log output to console"
