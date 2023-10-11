@@ -51,6 +51,7 @@ ostream &operator<<(ostream &out, const vector<T> &v)
     return out;
 }
 
+
 struct math
 {
 private:
@@ -173,23 +174,6 @@ public:
         sort(all(ans));
 
         return ans;
-    }
-
-    ll num_of_divisors(ll n)
-    {
-        ll div = 0;
-
-        for (int i = 1; i * i <= n; ++i)
-        {
-            if (n % i == 0)
-            {
-                div++;
-                if (i != n / i)
-                    div++;
-            }
-        }
-
-        return div;
     }
 
     vector<pair<ll, ll>> prime_factorization(ll n)
@@ -347,7 +331,8 @@ public:
         // n->is the number of terms in the series
         // a->is the first term of the series
         // d->is the common difference between the terms
-        return (n / 2) * (2 * a + (n - 1) * d);
+        int last = last_term_in_arithmetic_progression(n, a, d);
+        return n * (a + last) / 2;
     }
 
     ll last_term_in_arithmetic_progression(ll n, ll a, ll d)
@@ -360,6 +345,23 @@ public:
     {
         double x = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
         return x;
+    }
+
+    ll num_of_divisors(ll n)
+    {
+        ll div = 0;
+
+        for (int i = 1; i * i <= n; ++i)
+        {
+            if (n % i == 0)
+            {
+                div++;
+                if (i != n / i)
+                    div++;
+            }
+        }
+
+        return div;
     }
 
     double slope(double x1, double y1, double x2, double y2)
