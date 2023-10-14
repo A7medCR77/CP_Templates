@@ -1,7 +1,5 @@
 {
 	"math": {
-		"prefix": "math",
-		"body": ["math": {
 			"prefix": "math",
 			"body": [
 "struct math",
@@ -1590,3 +1588,14 @@
         ],
         "description": "Log output to console"
 }
+
+
+/*
+    "kadane2dmx": {
+        "prefix": "kadane2dmx",
+        "body": [
+            
+        ],
+        "description": "Log output to console"
+    }
+*/
