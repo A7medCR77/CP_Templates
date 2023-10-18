@@ -5,7 +5,7 @@ private:
    {
       ll x = modular_exponential(a, d, n);
       if (x == 1 || x == n - 1)
-         return true;
+         return true; 
 
       for (int i = 1; i < s; ++i)
       {
@@ -326,5 +326,15 @@ public:
          return -OO;
 
       return (y2 - y1) / (x2 - x1);
+   }
+
+   bool is_prime(ll n)
+   {
+      if (n < 2 || (!(n & 1) && n != 2))
+         return false;
+      for (int i = 3; i*i <= n; i += 2)
+         if (n % i == 0)
+            return false;
+      return true;
    }
 };
