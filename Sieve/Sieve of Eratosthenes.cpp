@@ -19,47 +19,51 @@ ostream &operator<<(ostream &out, const vector<T> &v)
     return out;
 }
 
+
 // time complexity n log(log(n))
 
 template <typename T = int>
 struct sieve
 {
-    vector<bool> is_prime;
-    vector<T> primes;
-    int n;
-    sieve(int n)
-    {
-        this->n = n;
-        is_prime.assign(n + 5, 1);
+   vector<bool> is_prime;
+   vector<T> primes;
+   int n;
 
-        is_prime[0] = is_prime[1] = false;
+   sieve(int n)
+   {
+      this->n = n;
+      is_prime.assign(n + 5, 1);
+      is_prime[0] = is_prime[1] = false;
 
-        for (int i = 2; i * i <= n; ++i)
-        {
-            if (is_prime[i])
+      for (int i = 2; i * i <= n; ++i)
+      {
+         if (is_prime[i])
+         {
+            for (int l = i * i; l <= n; l += i)
             {
-                for (int l = i * i; l <= n; l += i)
-                {
-                    is_prime[l] = false;
-                }
+               is_prime[l] = false;
             }
-        }
-    }
+         }
+      }
+   }
 
-    vector<T> get_primes()
-    {
-        for (int i = 1; i <= n; ++i)
-            if (is_prime[i])
-                primes.push_back(i);
+   vector<bool> GetBooleanArray()
+   {
+      return is_prime;
+   }
 
-        return primes;
-    }
+   vector<T> get_primes()
+   {
+      for (int i = 1; i <= n; ++i)
+         if (is_prime[i])
+            primes.push_back(i);
+
+      return primes;
+   }
 };
 
 void solve()
 {
-    sieve<int> a(200);
-    cout << a.get_primes();
 }
 
 int main()
