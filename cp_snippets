@@ -1472,8 +1472,8 @@
         "description": "Log output to console"
     }
 
-    "kadane2dmx": {
-        "prefix": "kadane2dmx",
+    "monotonic_stack": {
+        "prefix": "monotonic_stack",
         "body": [
 "template<typename T>struct monotonic_stack",
 "{",
