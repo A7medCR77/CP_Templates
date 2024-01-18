@@ -5,7 +5,7 @@ private:
    {
       ll x = modular_exponential(a, d, n);
       if (x == 1 || x == n - 1)
-         return true; 
+         return true;
 
       for (int i = 1; i < s; ++i)
       {
@@ -63,50 +63,50 @@ public:
       return (r - l + 1) - (r / 2 - (l - 1) / 2);
    }
 
-ll get_mul(ll a, ll b, ll mod = 1000000007)
-{
-    ll res = 0;
- 
-    while (b)
-    {
-        if (b & 1)
-        res = (res + a) % mod;
-        a = (a * 2) % mod;
-        b >>= 1;
-    }
- 
-    return res % mod;
-}
- 
-ll binary_exponential(ll a, ll b)
-{
-    ll res = 1;
- 
-    while (b)
-    {
-        if (b & 1)
-        res *= a;
-        a *= a;
-        b >>= 1;
-    }
- 
-    return res;
-}
- 
-ll modular_exponential(ll a, ll b, ll mod = 1000000007)
-{
-    ll res = 1;
- 
-    while (b)
-    {
-        if (b & 1)
-        res = (res * a) % mod;
-        a = (a * a) % mod;
-        b >>= 1;
-    }
- 
-    return res % mod;
-}
+   ll get_mul(ll a, ll b, ll mod = 1000000007)
+   {
+      ll res = 0;
+
+      while (b)
+      {
+         if (b & 1)
+            res = (res + a) % mod;
+         a = (a * 2) % mod;
+         b >>= 1;
+      }
+
+      return res % mod;
+   }
+
+   ll binary_exponential(ll a, ll b)
+   {
+      ll res = 1;
+
+      while (b)
+      {
+         if (b & 1)
+            res *= a;
+         a *= a;
+         b >>= 1;
+      }
+
+      return res;
+   }
+
+   ll modular_exponential(ll a, ll b, ll mod = 1000000007)
+   {
+      ll res = 1;
+
+      while (b)
+      {
+         if (b & 1)
+            res = (res * a) % mod;
+         a = (a * a) % mod;
+         b >>= 1;
+      }
+
+      return res % mod;
+   }
    ll mod_inv(ll x)
    {
       return modular_exponential(x, MOD - 2);
@@ -141,7 +141,7 @@ ll modular_exponential(ll a, ll b, ll mod = 1000000007)
          cnt++, n /= 2;
 
       if (cnt > 0)
-        ans.pb({2, cnt});
+         ans.pb({2, cnt});
 
       for (int i = 3; i * i <= n; i += 2)
       {
@@ -331,9 +331,40 @@ ll modular_exponential(ll a, ll b, ll mod = 1000000007)
    {
       if (n < 2 || (!(n & 1) && n != 2))
          return false;
-      for (int i = 3; i*i <= n; i += 2)
+      for (int i = 3; i * i <= n; i += 2)
          if (n % i == 0)
             return false;
       return true;
+   }
+
+   ll nCr(ll n, ll r)
+   {
+      if (r > n)
+         return 0;
+
+      ll p = 1, k = 1;
+
+      if (n - r < r)
+         r = n - r;
+
+      if (n < 1)
+         return 0;
+      while (r > 0)
+      {
+         p *= n, k *= r;
+         ll m = __gcd(p, k);
+         p /= m, k /= m, n--, r--;
+      }
+      return p;
+   }
+
+   ll nPr(ll n, ll r)
+   {
+      if (r > n)
+         return 0;
+      ll npr = 1;
+      while (r-- > 0)
+         npr *= n--;
+      return npr;
    }
 };
