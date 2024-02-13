@@ -5,7 +5,7 @@ private:
    {
       ll x = modular_exponential(a, d, n);
       if (x == 1 || x == n - 1)
-         return true;
+         return true; 
 
       for (int i = 1; i < s; ++i)
       {
@@ -70,7 +70,7 @@ public:
       while (b)
       {
          if (b & 1)
-            res = (res + a) % mod;
+         res = (res + a) % mod;
          a = (a * 2) % mod;
          b >>= 1;
       }
@@ -85,7 +85,7 @@ public:
       while (b)
       {
          if (b & 1)
-            res *= a;
+         res *= a;
          a *= a;
          b >>= 1;
       }
@@ -100,7 +100,7 @@ public:
       while (b)
       {
          if (b & 1)
-            res = (res * a) % mod;
+         res = (res * a) % mod;
          a = (a * a) % mod;
          b >>= 1;
       }
@@ -331,7 +331,7 @@ public:
    {
       if (n < 2 || (!(n & 1) && n != 2))
          return false;
-      for (int i = 3; i * i <= n; i += 2)
+      for (int i = 3; i*i <= n; i += 2)
          if (n % i == 0)
             return false;
       return true;
@@ -341,12 +341,9 @@ public:
    {
       if (r > n)
          return 0;
-
       ll p = 1, k = 1;
-
       if (n - r < r)
          r = n - r;
-
       if (n < 1)
          return 0;
       while (r > 0)
@@ -364,7 +361,13 @@ public:
          return 0;
       ll npr = 1;
       while (r-- > 0)
-         npr *= n--;
+        npr *= n--;
       return npr;
+   }
+
+   ll Summation_of_Devisors(ll a, ll b, ll c){
+      ll right = summation(b / c);
+      ll left = summation((a - 1) / c);
+      return (right - left) * c;
    }
 };
