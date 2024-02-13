@@ -366,8 +366,8 @@ public:
    }
 
    ll Summation_of_Devisors(ll a, ll b, ll c){
-      ll right = summation(b / c);
-      ll left = summation((a - 1) / c);
+      ll right = summation(1,b / c);
+      ll left = summation(1,(a - 1) / c);
       return (right - left) * c;
    }
 };
