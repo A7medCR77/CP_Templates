@@ -45,7 +45,7 @@
 "      return first * pow(ratio, k - 1);",
 "   }",
 "",
-"   // get ow many number between A & B Divisible by M",
+"   // get how many number between A & B Divisible by M",
 "   ll CountDivisibles(ll A, ll B, ll M)",
 "   {",
 "      if (A % M == 0)",
