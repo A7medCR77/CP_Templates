@@ -388,4 +388,45 @@ public:
 
     return area1 + area2;
   }
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  string get_factorial_for_a_big_number(ll num){
+     vector<int>ans;
+     int carry = 0;
+     ans.pb(1);
+
+     for (int i = 2; i <= num; ++i){
+        for(int l=0;l<sz(ans);++l){
+           ans[l] *= i;
+        }
+
+        for(int l=0;l<sz(ans);++l){
+           if(ans[l] > 9){
+              if(l == sz(ans) - 1){
+                 ans.pb(ans[l] / 10);
+              }
+              else{
+                 ans[l + 1] += ans[l] / 10;
+              }
+              ans[l] %= 10;
+           }
+        }
+     }
+
+     string fact = "";
+     for(int i=sz(ans)-1;i>=0;--i){
+        fact += to_string(ans[i]);
+     }
+
+     return fact;
+  }
+  
+  ll get_num_of_digits(ll num){
+      return log10(num) + 1;
+   }
+
+   ll get_num_of_bits(ll num){
+      return log2(num) + 1;
+   }
 };
