@@ -331,7 +331,7 @@ public:
    {
       if (n < 2 || (!(n & 1) && n != 2))
          return false;
-      for (int i = 3; i*i <= n; i += 2)
+      for (ll i = 3; i*i <= n; i += 2)
          if (n % i == 0)
             return false;
       return true;
@@ -366,67 +366,64 @@ public:
    }
 
    ll Summation_of_Devisors(ll a, ll b, ll c){
-      ll right = summation(1,b / c);
-      ll left = summation(1,(a - 1) / c);
+      ll right = summation(1, b / c);
+      ll left = summation(1, (a - 1) / c);
       return (right - left) * c;
    }
-   
-   // get intersection_area between two circles
    double intersection_area(double r1, double r2, double d) {
-    if (d >= r1 + r2) {
-        return 0;  // No overlap
-    }
-    if (d <= abs(r1 - r2)) {
-        return 0;  // One circle is completely inside the other without touching
-    }
+      if (d >= r1 + r2) {
+         return 0;  // No overlap
+      }
+      if (d <= abs(r1 - r2)) {
+         return 0;  // One circle is completely inside the other without touching
+      }
+      double theta1 = 2 * acos((d * d + r1 * r1 - r2 * r2) / (2 * d * r1));
+      double theta2 = 2 * acos((d * d + r2 * r2 - r1 * r1) / (2 * d * r2));
+      double area1 = 0.5 * r1 * r1 * (theta1 - sin(theta1));
+      double area2 = 0.5 * r2 * r2 * (theta2 - sin(theta2));
+      return area1 + area2;
+   }
 
-    double theta1 = 2 * acos((d * d + r1 * r1 - r2 * r2) / (2 * d * r1));
-    double theta2 = 2 * acos((d * d + r2 * r2 - r1 * r1) / (2 * d * r2));
-
-    double area1 = 0.5 * r1 * r1 * (theta1 - sin(theta1));
-    double area2 = 0.5 * r2 * r2 * (theta2 - sin(theta2));
-
-    return area1 + area2;
-  }
-  
-  
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  string get_factorial_for_a_big_number(ll num){
-     vector<int>ans;
-     int carry = 0;
-     ans.pb(1);
-
-     for (int i = 2; i <= num; ++i){
-        for(int l=0;l<sz(ans);++l){
-           ans[l] *= i;
-        }
-
-        for(int l=0;l<sz(ans);++l){
-           if(ans[l] > 9){
-              if(l == sz(ans) - 1){
-                 ans.pb(ans[l] / 10);
+   string get_factorial_for_a_big_number(ll num){
+      vector<int>ans;
+      int carry = 0;
+      ans.pb(1);
+      for (int i = 2; i <= num; ++i){
+          for(int l=0;l<sz(ans);++l){
+              ans[l] *= i;
+          }
+          for(int l=0;l<sz(ans);++l){
+              if(ans[l] > 9){
+                  if(l == sz(ans) - 1){
+                  ans.pb(ans[l] / 10);
+                  }
+                  else{
+                  ans[l + 1] += ans[l] / 10;
+                  }
+                  ans[l] %= 10;
               }
-              else{
-                 ans[l + 1] += ans[l] / 10;
-              }
-              ans[l] %= 10;
-           }
-        }
-     }
+          }
+      }
+      string fact = "";
+      for(int i=sz(ans)-1;i>=0;--i){
+          fact += to_string(ans[i]);
+      }
+      return fact;
+   }
 
-     string fact = "";
-     for(int i=sz(ans)-1;i>=0;--i){
-        fact += to_string(ans[i]);
-     }
-
-     return fact;
-  }
-  
-  ll get_num_of_digits(ll num){
-      return log10(num) + 1;
+   ll get_num_of_digits(ll num){
+       return log10(num) + 1;
    }
 
    ll get_num_of_bits(ll num){
-      return log2(num) + 1;
+       return log2(num) + 1;
+   }
+
+   ll num_of_divisors_with_factorization(ll n){
+       ll ans = 1;
+       for(auto &[l, r] : prime_factorization(n)){
+              ans *= (r + 1);
+       }
+       return ans;
    }
 };
