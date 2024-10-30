@@ -426,4 +426,37 @@ public:
        }
        return ans;
    }
+   
+   double to_radians(double degree){
+      return degree * (pi / 180.0);
+   }
+
+   double to_degree(double radian){
+      if(radian < 0){
+         radian += 2 * pi;
+      }
+      return radian * (180.0 / pi);
+   }
+   
+      double fixAngle(double A){
+      return (A>1?1:(A<-1?-1:A));
+   }
+
+   // low of sines
+   // a/sin(A) = b/sin(B) = c/sin(C)
+   double get_side_a_given_bAB(double b, double A, double B){ // side b , angle A , angle B
+      return (b * sin(A)) / sin(B);
+   }
+
+   double get_angle_A_given_abB(double a, double b, double B){ // side a , side b , angle B
+      return asin(fixAngle((a * sin(B)) / b));
+   }
+
+   // low of cosines
+   // c^2 = a^2 + b^2 - 2ab cos(C)
+   // a^2 = b^2 + c^2 - 2bc cos(A)
+   // b^2 = a^2 + c^2 - 2ac cos(B)
+   double get_angle_A_given_abc(double a, double b, double c){ // side a , side b , side c
+      return acos(fixAngle((b * b + c * c - a * a) / (2 * b * c)));
+   }
 };
