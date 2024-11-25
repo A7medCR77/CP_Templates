@@ -50,8 +50,8 @@ public:
    }
 
    // get summation of geometry sequence increase by multiple of constant
-   // 1 4 16..
-   // 1 3 9..
+   // 1 4 16.
+   // 1 3 9.
    ll geometry_summation(ll first, ll ratio, int number_of_element)
    {
       return ((first * (1 - pow(ratio, number_of_element))) / (1 - ratio));
